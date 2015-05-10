@@ -1,0 +1,27 @@
+<table class="table table-striped">
+
+	<thead>
+		<tr>
+			<th ng-repeat="column in columns">{{::column.label}}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr ng-repeat="item in rows">
+			<td ng-repeat="column in columns">
+
+				<span ng-if="::column.type == 'cell'">
+					<span ng-bind-html="getCell(item, column.keyModel) | btRendererObj:column.renderer:item"></span>
+				</span>
+
+				<a ng-if="::column.type == 'action'" href="" ng-click="column.click()(item)">
+					{{::column.label}}
+				</a>
+
+			</td>
+		</tr>
+	</tbody>
+
+</table>
+<div ng-transclude></div>
+
